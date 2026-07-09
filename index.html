@@ -1,88 +1,390 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WN Corretora de Seguros</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wn Corretora de Seguros</title>
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root {
+            --primary: #0f172a; /* Azul Escuro Elegante */
+            --secondary: #2563eb; /* Azul Vibrante */
+            --accent: #10b981; /* Verde Sucesso/WhatsApp */
+            --text-light: #f8fafc;
+            --text-dark: #334155;
+            --bg-light: #f1f5f9;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f4f4f4;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-header{
-    background:#003366;
-    color:white;
-    text-align:center;
-    padding:50px;
-}
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
 
-section{
-    max-width:1000px;
-    margin:auto;
-    padding:40px;
-    text-align:center;
-}
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.card{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
+        /* --- HEADER / NAV --- */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
 
-.botao{
-    display:inline-block;
-    margin-top:20px;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    padding:15px 30px;
-    border-radius:8px;
-    font-size:20px;
-}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
 
-footer{
-    background:#003366;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-}
-</style>
+        .logo {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
+        .logo span { color: var(--secondary); }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover { color: var(--secondary); }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background-color: var(--secondary);
+            color: var(--text-light);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s transform, 0.3s background-color;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            background-color: #1d4ed8;
+        }
+
+        /* --- SEÇÃO SEGUROS --- */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-seguros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .card h3 { margin-bottom: 15px; font-size: 1.4rem;}
+
+        /* --- PARCEIROS / LOGOS --- */
+        .parceiros {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            opacity: 0.6;
+        }
+
+        .logos-container i {
+            font-size: 2.5rem;
+            color: #64748b;
+        }
+
+        /* --- CONTATO & INFO --- */
+        .bg-dark-section {
+            background-color: var(--primary);
+            color: var(--text-light);
+        }
+
+        .contato-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .info-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #090d16;
+            color: #64748b;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* --- WHATSAPP FLUTUANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #059669;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; } /* Simplificado para o escopo */
+            .hero h1 { font-size: 2.3rem; }
+            .section { padding: 60px 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<h1>WN Corretora de Seguros</h1>
-<p>Proteção para você, sua família e seu patrimônio.</p>
-</header>
+    <!-- WHATSAPP BOTÃO (Substitua o número 5500000000000 pelo seu correto) -->
+    <a href="https://wa.me/5500000000000?text=Olá! Gostaria de fazer uma cotação de seguro." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<section>
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">WN <span>Seguros</span></div>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#seguros">Seguros</a></li>
+                <li><a href="#parceiros">Parceiras</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </header>
 
-<div class="card">
+    <!-- BANNER PRINCIPAL (HERO) -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Protegendo o que mais importa para você</h1>
+            <p>A Wn Corretora de Seguros oferece soluções sob medida para garantir a sua tranquilidade, da sua família e do seu patrimônio.</p>
+            <a href="#seguros" class="btn-cta">Conhecer Nossos Seguros</a>
+        </div>
+    </section>
 
-<h2>Solicite sua cotação</h2>
+    <!-- SEÇÃO SEGUROS -->
+    <section id="seguros" class="section">
+        <h2 class="section-title">Nossas Soluções</h2>
+        <div class="grid-seguros">
+            <div class="card">
+                <i class="fas fa-car"></i>
+                <h3>Seguro Auto</h3>
+                <p>Proteção completa para o seu veículo rodar sem preocupações com assistência 24h.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-home"></i>
+                <h3>Seguro Residencial</h3>
+                <p>Garantia de segurança para o seu lar contra incêndios, furtos e danos elétricos.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Seguro de Vida</h3>
+                <p>O amparo financeiro e o cuidado que quem você mais ama merece nos momentos difíceis.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-building"></i>
+                <h3>Seguro Empresarial</h3>
+                <p>Proteja a sua empresa, colaboradores e o futuro do seu negócio contra imprevistos.</p>
+            </div>
+        </div>
+    </section>
 
-<p>Seguros Auto, Vida, Residencial, Empresarial e muito mais.</p>
+    <!-- SEÇÃO PARCEIROS (EXEMPLO) -->
+    <section id="parceiros" class="parceiros">
+        <h3>Trabalhamos com as Maiores Seguradoras do País</h3>
+        <div class="logos-container">
+            <!-- Representação visual de marcas parceiras utilizando ícones genéricos e texto -->
+            <div><i class="fas fa-shield-alt"></i> <p>Porto Seguro</p></div>
+            <div><i class="fas fa-shield-alt"></i> <p>Allianz</p></div>
+            <div><i class="fas fa-shield-alt"></i> <p>SulAmérica</p></div>
+            <div><i class="fas fa-shield-alt"></i> <p>Bradesco Seguros</p></div>
+            <div><i class="fas fa-shield-alt"></i> <p>Mapfre</p></div>
+        </div>
+    </section>
 
-<a class="botao" href="#">
-Fale conosco
-</a>
+    <!-- SEÇÃO CONTATO & DADOS CNPJ -->
+    <section id="contato" class="section bg-dark-section">
+        <h2 class="section-title" style="color: white;">Fale Conosco</h2>
+        <div class="contato-wrapper">
+            <div class="info-box">
+                <h3>Wn Corretora de Seguros LTDA</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8;">Sua corretora de confiança em Dourados - MS. Entre em contato para uma consultoria gratuita.</p>
+                <div class="info-item">
+                    <i class="fas fa-id-card"></i>
+                    <div>
+                        <strong>CNPJ</strong>
+                        <p>42.204.374/0001-79</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3>Onde Estamos</h3>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Endereço</strong>
+                        <p>Rua Hayel Bon Faker, 2630 - Sala 04</p>
+                        <p>Jardim Caramuru | CEP: 79806-000</p>
+                        <p>Dourados - Mato Grosso do Sul</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
-
-</section>
-
-<footer>
-
-© 2025 WN Corretora de Seguros
-
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Wn Corretora de Seguros. Todos os direitos reservados.</p>
+    </footer>
 
 </body>
 </html>
